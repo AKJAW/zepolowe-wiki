@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
@@ -16,6 +19,21 @@ import kotlinx.android.synthetic.main.main_game.view.*
 class GameFragment: Fragment(){
     private var parentContext: Context? = null
     private lateinit var recyclerView: RecyclerView
+    private lateinit var gameViewModel: GameViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val gameViewModel = ViewModelProviders.of(this)[GameViewModel::class.java]
+
+        gameViewModel.targetArticle.observe(this@GameFragment, Observer {
+            val s = ":"
+        })
+
+        gameViewModel.currentArticle.observe(this@GameFragment, Observer {
+            val s = ":"
+        })
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.main_game, container, false)
