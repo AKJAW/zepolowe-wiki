@@ -9,7 +9,9 @@ import com.example.myapplication.R
 import kotlinx.android.synthetic.main.link_item.view.*
 import kotlinx.android.synthetic.main.wiki_navigation_item.view.*
 
-class LinkAdapter(private var links: List<String>): RecyclerView.Adapter<LinkAdapter.LinkViewHolder>(){
+class LinkAdapter(
+    private var links: List<String>,
+    private val onClick: (String) -> Unit): RecyclerView.Adapter<LinkAdapter.LinkViewHolder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): LinkViewHolder {
         val inflater = LayoutInflater.from(viewGroup.context)
@@ -21,6 +23,10 @@ class LinkAdapter(private var links: List<String>): RecyclerView.Adapter<LinkAda
 
     override fun onBindViewHolder(holder: LinkViewHolder, position: Int) {
         holder.linkTitle.text = links[position]
+
+        holder.linkTitle.setOnClickListener {
+            onClick(links[position])
+        }
     }
 
     class LinkViewHolder(linkView: View): RecyclerView.ViewHolder(linkView){

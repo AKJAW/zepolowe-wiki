@@ -24,9 +24,6 @@ class GameFragment: Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        linkAdapter = LinkAdapter(listOf())
-
         gameViewModel = ViewModelProviders.of(this)[GameViewModel::class.java]
 
         gameViewModel.targetArticle.observe(this@GameFragment, Observer {
@@ -41,6 +38,16 @@ class GameFragment: Fragment(){
             //TODO linkAdapter z lista
             linkAdapter.setLinks(it.links)
         })
+
+        linkAdapter = LinkAdapter(listOf()){
+            if(!current_article_view.isLoading){
+                gameViewModel.getArticleFromTitleForCurrent(it)
+                current_article_view.setIsLoading(true)
+//
+//                linkAdapter.setLinks(listOf())
+            }
+        }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

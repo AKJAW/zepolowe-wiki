@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Thread.sleep
+import java.net.URLDecoder
 
 interface WikiApi{
     fun randomArticle(articleLiveData: MutableLiveData<Article>): Job?
@@ -40,7 +41,9 @@ class WikiApiImpl: WikiApi{
             name = this.article.name,
             description = this.article.description,
             image = this.article.image?: "",
-            links = this.links
+            links = this.links.map {
+                URLDecoder.decode(it, "UTF-8")
+            }
         )
     }
 

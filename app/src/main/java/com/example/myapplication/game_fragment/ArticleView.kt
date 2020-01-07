@@ -24,7 +24,6 @@ import com.example.myapplication.R
 import com.example.myapplication.entities.Article
 import kotlinx.android.synthetic.main.article_collapsed.view.*
 import kotlinx.android.synthetic.main.article_header.view.*
-import javax.sql.DataSource
 import kotlin.random.Random
 
 
@@ -36,6 +35,9 @@ class ArticleView @JvmOverloads constructor(
 
     private var currentArticleViewMode: ArticleViewMode =
         ArticleViewMode.COLLAPSED
+
+    var isLoading = false
+        private set
 
     private lateinit var collapsedConstraintSet: ConstraintSet
     private lateinit var expandedConstraintSet: ConstraintSet
@@ -164,8 +166,8 @@ class ArticleView @JvmOverloads constructor(
             .placeholder(circularProgressDrawable)
             .apply(
                 RequestOptions()
-                .override(com.bumptech.glide.request.target.Target.SIZE_ORIGINAL)
-                .format(DecodeFormat.PREFER_ARGB_8888))
+                    .override(com.bumptech.glide.request.target.Target.SIZE_ORIGINAL)
+                    .format(DecodeFormat.PREFER_ARGB_8888))
             .into(article_image_view)
 
     }
@@ -204,8 +206,9 @@ class ArticleView @JvmOverloads constructor(
         headerBackground.setColor(color)
     }
 
-    fun setIsLoading(isLoading: Boolean){
-        article_progress_bar.visibility = if (isLoading){
+    fun setIsLoading(newIsLoading: Boolean){
+        isLoading = newIsLoading
+        article_progress_bar.visibility = if (newIsLoading){
             View.VISIBLE
         } else {
             View.GONE
