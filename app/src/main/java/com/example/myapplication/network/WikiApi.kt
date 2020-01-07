@@ -40,7 +40,7 @@ class WikiApiImpl: WikiApi{
             name = this.article.name,
             description = this.article.description,
             image = this.article.image?: "",
-            links = this.titles
+            links = this.links
         )
     }
 

@@ -6,5 +6,5 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class WikiApiResponse(
     @field:Json(name = "article") val article: WikiArticleResponse,
-    @field:Json(name = "titles") val titles: List<String> = listOf()
+    @field:Json(name = "links") val links: List<String> = listOf()
 )

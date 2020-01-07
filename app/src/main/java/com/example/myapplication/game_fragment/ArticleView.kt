@@ -85,7 +85,7 @@ class ArticleView @JvmOverloads constructor(
         }
     }
 
-    fun toggleView(newMode: ArticleViewMode) {
+    fun toggleView(newMode: ArticleViewMode = currentArticleViewMode.inverted()) {
         if(newMode == currentArticleViewMode){
             return
         }

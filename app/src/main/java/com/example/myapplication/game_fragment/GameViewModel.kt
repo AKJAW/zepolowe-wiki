@@ -23,10 +23,10 @@ class GameViewModel(private val wikiApi: WikiApi = WikiApiImpl()): ViewModel(){
     }
 
     fun getRandomArticleForCurrent(){
-        wikiApi.randomArticle(_targetArticle)
+        wikiApi.randomArticle(_currentArticle)
     }
 
     fun getArticleFromTitleForCurrent(title: String){
-        wikiApi.articleFromTitle(title, _targetArticle)
+        wikiApi.articleFromTitle(title, _currentArticle)
     }
 }
