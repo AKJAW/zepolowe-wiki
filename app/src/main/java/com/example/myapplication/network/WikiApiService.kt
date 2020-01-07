@@ -9,7 +9,6 @@ interface WikiApiService {
     @GET("random-article")
     suspend fun randomArticle(): WikiApiResponse
 
-
     @GET("article-from-title")
     suspend fun articleFromTitle(@Query("title") title: String): WikiApiResponse
 }
