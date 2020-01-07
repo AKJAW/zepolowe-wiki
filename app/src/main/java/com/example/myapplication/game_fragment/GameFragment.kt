@@ -39,7 +39,7 @@ class GameFragment: Fragment(){
         val root = inflater.inflate(R.layout.main_game, container, false)
         (activity as? AppCompatActivity)?.setSupportActionBar(root.my_toolbar)
 
-        recyclerView = root.link_recycler_view
+        recyclerView = root.wiki_navigation_recycler_view
 
         recyclerView.apply {
             adapter = LinkAdapter(listOf())
