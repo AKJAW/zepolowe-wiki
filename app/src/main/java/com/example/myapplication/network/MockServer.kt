@@ -1,23 +1,26 @@
 package com.example.myapplication.network
 
+import androidx.lifecycle.MutableLiveData
 import com.example.myapplication.entities.Article
-import com.example.myapplication.entities.WikiLink
+import kotlinx.coroutines.Job
 import kotlin.random.Random
 
 class MockServer(): WikiApi{
     val articles = createArticles()
 
 
-    override fun randomArticle(): Article {
+    override fun randomArticle(articleLiveData: MutableLiveData<Article>): Job? {
         val randomIndex = Random.nextInt(articles.size)
+        articleLiveData.postValue(articles[randomIndex])
 
-        return articles[randomIndex]
+        return null
     }
 
-    override fun articleFromTitle(title: String): Article {
+    override fun articleFromTitle(title: String, articleLiveData: MutableLiveData<Article>): Job? {
         val randomIndex = Random.nextInt(articles.size)
+        articleLiveData.postValue(articles[randomIndex])
 
-        return articles[randomIndex]
+        return null
     }
 
     private fun createArticles(): List<Article> {
@@ -38,9 +41,9 @@ class MockServer(): WikiApi{
         return listOf(article1)
     }
 
-    private fun createLinks(vararg strings: String): List<WikiLink>{
+    private fun createLinks(vararg strings: String): List<String>{
         return strings.map {
-            WikiLink(it)
+            it
         }
     }
 

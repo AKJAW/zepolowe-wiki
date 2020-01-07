@@ -6,10 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.entities.WikiLink
 import kotlinx.android.synthetic.main.link_item.view.*
 
-class LinkAdapter(var links: List<WikiLink>): RecyclerView.Adapter<LinkAdapter.LinkViewHolder>(){
+class LinkAdapter(var links: List<String>): RecyclerView.Adapter<LinkAdapter.LinkViewHolder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): LinkViewHolder {
         val inflater = LayoutInflater.from(viewGroup.context)
@@ -20,7 +19,7 @@ class LinkAdapter(var links: List<WikiLink>): RecyclerView.Adapter<LinkAdapter.L
     override fun getItemCount(): Int = links.size
 
     override fun onBindViewHolder(holder: LinkViewHolder, position: Int) {
-        holder.linkTitle.text = links[position].title
+        holder.linkTitle.text = links[position]
     }
 
 
